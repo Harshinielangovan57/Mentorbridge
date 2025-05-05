@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const products=[
+            {
+                productId:1,
+                name:"Diamond",
+                description:"previous one",
+                price:5000,
+                stock:30,
+                category:"Jewels",
+                tags:["jewels","fashion"],
+                discount:null
+            },{
+                productId:2,
+                name:"Gold",
+                description:"Most attracted jewel",
+                price:3000,
+                stock:35,
+                category:"Jewels",
+                tags:["jewels","fashion"],
+                discount:{type:"fixed",value:200}
+            },{
+                productId:3,
+                name:"Realme",
+                description:"previous one",
+                price:35000,
+                stock:10,
+                category:"Phone",
+                tags:["Mobile","Phone"],
+                discount:null
+            }
+            
+        ]
+
+        //Displaying products
+        const displayProductDetails=()=>{
+            for(const product of products){
+                const tag=product.tags.join(",");
+                console.log(`id:${product.productId},
+                            name:${product.name},
+                            description:${product.description},
+                            price:${product.price},
+                            stock:${product.stock},
+                            category:${product.category},
+                            tags:${tag}`
+            )
+            for(const key in product.discount){
+                console.log(`discount.${key}:${product.discount[key]}`)
+            }
+        }}
+        displayProductDetails()
+
+
+        //filter product
+        // const jewelCategory =products.filter(function(product){
+        //     return product.category==="Jewels"
+        // })
+        const jewelCategory =products.filter((product) => product.category==="Jewels")
+        console.log(jewelCategory)
+
+        //finding product 1
+        const findProduct= (id) => {
+            return products.find(product => product.productId === id);
+        }
+        
+        console.log(findProduct(2))
+
+// IIEF
+const discountModule = (() => {
+    const applyDiscount = (productId) => {
+        const product = findProduct(productId);
+            if(product.discount){
+                if(product.discount.type === 'fixed'){
+                    product.price -= product.discount.value;
+                }else{
+                    product.price -= product.price * (product.discount.value / 100);
+                }
+               
+            }else{
+                console.log('No discount for this product');
+            }
+    }
+    return {applyDiscount:applyDiscount};
+})()
+
+discountModule.applyDiscount(2)
+
+//update stock
+const updateStock = (productId, newStock) => {
+    const product = findProduct(productId);
+    if(!product){
+        console.log("No product ");
+        return;
+    }else{
+        product.stock = newStock;
+        return displayProductDetails(product);
+    }
+}
+updateStock(2,560);
+
+
+const TotalPrice=()=>{
+    let totalValue = 0;
+    for(let i =0;i<products.length;i++){
+        totalValue +=products[i].stock*products[i].price
+    }
+    return totalValue;
+}
+console.log(TotalPrice())
+
+
+const addProduct =(productId,tag)=>{
+    const product=findProduct(productId)
+    if(product.tags.includes(tag)){
+        console.log("Tag already exist");
+    }else{
+        product.tags.push(tag)
+    }
+    console.log(`${tag} pushed to the product ${product.name}`)
+}
+addProduct(3,'electronics');
+
+const removeProduct = (productId) => {
+    const productIndex = products.findIndex(product => product.productId === productId);
+    if(productIndex !== -1){
+        products.splice(productIndex,1);
+        console.log('product removed successfully');
+    }else{
+        console.log('No product found with this id');
+    }
+
+}
+
+removeProduct(1)
+
+        
+
+        
+    </script>
+</body>
+</html>
