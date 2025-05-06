@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const Students=[
+    {
+        studentId:101,
+        name:"Harshini",
+        grade:2,
+        courses:["Maths","Python"],
+        attendance:{
+            "2024-01-06":Present,
+            "2024-04-07":Absent
+         },
+         hobbies:{
+            "sports":["shuttle","carrom"],
+            "music":["piano","viloin"]
+         }
+     },
+     {
+        studentId:102,
+        name:"Rebika",
+        grade:1,
+        courses:["Science","Java"],
+        attendance:{
+            "2024-02-06":Present,
+            "2024-06-07":Absent
+         },
+         hobbies:{
+            "sports":["shuttle","chess"],
+            "music":["Guitar","viloin"]
+         }
+     }
+]
+const displayProducts = () => {
+    for(const student of students){
+        const course=student.courses.join(",");
+        console.log(`
+            StudentId:${student.studentId},
+            Name:${student.name},
+            Grade:${student.grade},
+        `)
+        for(const key in student.attendence){
+            console.log(`attendencs.${key}:${student.attendence[key]}`)
+        }
+    }
+}
+displayProducts();
+    const filteredstudent =products.filter((product) => product.category==="Jewels")
+    console.log(filteredstudent)
+
+
+    const findStudent= (id) => {
+        return students.find(student => student.studentId === id);
+    }
+        
+    console.log(findStudent(101))
+
+
+const studentAttendence = (() => {
+    const recordAttendence = (studentId) => {
+        const student = findStudent(studentId);
+        if(student){
+            student.attendance[date] = status;
+            console.log(`Attendance for ${student.name} on ${date} is recorded as ${status ? 'Present' : 'Absent'}`);
+        }else{
+            console.log('Student not found');
+        }
+    }   
+    return {recordAttendendance : recordAttendance}
+})()
+
+attendanceModule.recordAttendance(101, "2024-01-06", true);
+
+const addStudent =(studentId,course)=>{
+    const student=findStudent(studentId)
+    if(student.courses.includes(course)){
+        console.log("Cousre already exist");
+    }else{
+        student.courses.push(course)
+    }
+    console.log(`${course} add ${student.name}`)
+}
+addStudent(101,'Science');
+
+const removeStudent = (studentId) => {
+    const studentIndex = students.findIndex(student => student.studentId=== studentId);
+    if(studentIndex !== -1){
+        students.splice(studentIndex, 101);
+        console.log('Student removed successfully');
+    }else{
+        console.log('No student');
+    }
+}
+
+removeStudent(101)
+
+
+    </script>
+</body>
+</html>
