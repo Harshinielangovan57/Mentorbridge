@@ -1,0 +1,52 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+.card{
+    display: flex;
+    flex-direction: row;
+    border-color: white;
+    margin-top: 50px;
+    gap:10px;
+    width: 90%;
+    margin-left: 15px;
+}
+
+.highlight{
+    margin-left: 75px;
+    margin-bottom: 75px;
+ }
+ .container{
+   width: 43%;
+   margin-left: 3px;
+   margin-top: 30px;
+ }
+ .footerStyle{
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(25, 25, 55);
+  padding: 20px 40px;
+  color: white;
+
+ }
+ 
+ .article{
+   background-color: #f8f9fa;
+   padding: 50px;
+   border-radius: 5px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+  
+ }
+
+ .hero-image {
+  height: 500px;
+  
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+    height: 500px;
+  }
+}
+
